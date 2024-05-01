@@ -128,6 +128,8 @@ for job in job-chpl-stencil-opt-{0,1,2}; do sbatch $job; sleep 1; done;
 
 TODO
 
+MFlops/s (we expect number of nodes ~ MFlops ~ 1/walltime):
+
 ```sh
 cd results && grep 'MFlops/s' result-*.out
 # result-chpl-stencil-blockdist-0.out:Rate (MFlops/s): 5718.770795  Avg time (s): 0.000210985  
@@ -166,4 +168,88 @@ cd results && grep 'MFlops/s' result-*.out
 # result-mpiopenmp-stencil-6.out:Rate (MFlops/s), including communication and increment time: 469215.976793 
 # result-mpiopenmp-stencil-7.out:Rate (MFlops/s), including communication and increment time: 901721.422619 
 # result-mpiopenmp-stencil-8.out:Rate (MFlops/s), including communication and increment time: 1314397.692118
+```
+
+communication times (note: for blockdist, the communications happen during the stencil, so these times are not representative):
+
+```sh
+grep -i 'comm time' result-*.out
+# result-chpl-stencil-blockdist-0.out:comm time =      total 0.000253, avg 2.53e-08
+# result-chpl-stencil-blockdist-1.out:comm time =      total 0.000252, avg 2.52e-08
+# result-chpl-stencil-blockdist-2.out:comm time =      total 0.000245, avg 2.45e-08
+# result-chpl-stencil-blockdist-3.out:comm time =      total 0.000248, avg 2.48e-08
+# result-chpl-stencil-blockdist-4.out:comm time =      total 0.000263, avg 2.63e-08
+# result-chpl-stencil-blockdist-5.out:comm time =      total 0.000238, avg 2.38e-08
+# result-chpl-stencil-blockdist-6.out:comm time =      total 0.000253, avg 2.53e-08
+# result-chpl-stencil-blockdist-7.out:comm time =      total 0.000283, avg 2.83e-08
+# result-chpl-stencil-blockdist-8.out:comm time =      total 0.000294, avg 2.94e-08
+# result-chpl-stencil-opt-0.out:comm time =      total 0.037894, avg 3.7894e-06
+# result-chpl-stencil-opt-1.out:comm time =      total 1.14631, avg 0.000114631
+# result-chpl-stencil-opt-2.out:comm time =      total 2.27818, avg 0.000227818
+# result-chpl-stencil-opt-3.out:comm time =      total 2.45184, avg 0.000245184
+# result-chpl-stencil-opt-4.out:comm time =      total 3.43848, avg 0.000343848
+# result-chpl-stencil-opt-5.out:comm time =      total 3.71855, avg 0.000371855
+# result-chpl-stencil-opt-6.out:comm time =      total 6.20309, avg 0.000620309
+# result-chpl-stencil-opt-7.out:comm time =      total 4.58092, avg 0.000458092
+# result-chpl-stencil-opt-8.out:comm time =      total 8.21222, avg 0.000821222
+# result-chpl-stencil-stencildist-0.out:comm time =      total 0.038626, avg 3.8626e-06
+# result-chpl-stencil-stencildist-1.out:comm time =      total 1.16877, avg 0.000116877
+# result-chpl-stencil-stencildist-2.out:comm time =      total 2.25004, avg 0.000225004
+# result-chpl-stencil-stencildist-3.out:comm time =      total 2.3541, avg 0.00023541
+# result-chpl-stencil-stencildist-4.out:comm time =      total 3.45764, avg 0.000345764
+# result-chpl-stencil-stencildist-5.out:comm time =      total 3.60483, avg 0.000360483
+# result-chpl-stencil-stencildist-6.out:comm time =      total 3.75326, avg 0.000375326
+# result-chpl-stencil-stencildist-7.out:comm time =      total 6.89182, avg 0.000689182
+# result-chpl-stencil-stencildist-8.out:comm time =      total 8.50537, avg 0.000850537
+# result-mpiopenmp-stencil-0.out:Comm time [s] (max of all ranks):      total 0.000529, avg 0.000000
+# result-mpiopenmp-stencil-1.out:Comm time [s] (max of all ranks):      total 0.074500, avg 0.000007
+# result-mpiopenmp-stencil-2.out:Comm time [s] (max of all ranks):      total 0.145751, avg 0.000015
+# result-mpiopenmp-stencil-3.out:Comm time [s] (max of all ranks):      total 0.219346, avg 0.000022
+# result-mpiopenmp-stencil-4.out:Comm time [s] (max of all ranks):      total 0.252071, avg 0.000025
+# result-mpiopenmp-stencil-5.out:Comm time [s] (max of all ranks):      total 0.295243, avg 0.000030
+# result-mpiopenmp-stencil-6.out:Comm time [s] (max of all ranks):      total 0.334908, avg 0.000033
+# result-mpiopenmp-stencil-7.out:Comm time [s] (max of all ranks):      total 0.473501, avg 0.000047
+# result-mpiopenmp-stencil-8.out:Comm time [s] (max of all ranks):      total 1.062291, avg 0.000106
+```
+
+stencil times (we expect constant stencil times for a strong scaling):
+
+```sh
+grep -i 'stencil time' result-*.out
+# result-chpl-stencil-blockdist-0.out:stencil time =   total 2.03937, avg 0.000203937
+# result-chpl-stencil-blockdist-1.out:stencil time =   total 3.63914, avg 0.000363914
+# result-chpl-stencil-blockdist-2.out:stencil time =   total 4.03689, avg 0.000403689
+# result-chpl-stencil-blockdist-3.out:stencil time =   total 4.76875, avg 0.000476875
+# result-chpl-stencil-blockdist-4.out:stencil time =   total 5.23005, avg 0.000523005
+# result-chpl-stencil-blockdist-5.out:stencil time =   total 5.71985, avg 0.000571985
+# result-chpl-stencil-blockdist-6.out:stencil time =   total 6.52925, avg 0.000652925
+# result-chpl-stencil-blockdist-7.out:stencil time =   total 7.84955, avg 0.000784955
+# result-chpl-stencil-blockdist-8.out:stencil time =   total 7.12846, avg 0.000712846
+# result-chpl-stencil-opt-0.out:stencil time =   total 0.121197, avg 1.21197e-05
+# result-chpl-stencil-opt-1.out:stencil time =   total 0.251713, avg 2.51713e-05
+# result-chpl-stencil-opt-2.out:stencil time =   total 0.262312, avg 2.62312e-05
+# result-chpl-stencil-opt-3.out:stencil time =   total 0.294854, avg 2.94854e-05
+# result-chpl-stencil-opt-4.out:stencil time =   total 0.335984, avg 3.35984e-05
+# result-chpl-stencil-opt-5.out:stencil time =   total 0.464263, avg 4.64263e-05
+# result-chpl-stencil-opt-6.out:stencil time =   total 0.934809, avg 9.34809e-05
+# result-chpl-stencil-opt-7.out:stencil time =   total 0.947272, avg 9.47272e-05
+# result-chpl-stencil-opt-8.out:stencil time =   total 1.76124, avg 0.000176124
+# result-chpl-stencil-stencildist-0.out:stencil time =   total 2.33527, avg 0.000233527
+# result-chpl-stencil-stencildist-1.out:stencil time =   total 2.46613, avg 0.000246613
+# result-chpl-stencil-stencildist-2.out:stencil time =   total 2.56828, avg 0.000256828
+# result-chpl-stencil-stencildist-3.out:stencil time =   total 3.61208, avg 0.000361208
+# result-chpl-stencil-stencildist-4.out:stencil time =   total 4.11926, avg 0.000411926
+# result-chpl-stencil-stencildist-5.out:stencil time =   total 5.19918, avg 0.000519918
+# result-chpl-stencil-stencildist-6.out:stencil time =   total 4.81045, avg 0.000481045
+# result-chpl-stencil-stencildist-7.out:stencil time =   total 7.27298, avg 0.000727298
+# result-chpl-stencil-stencildist-8.out:stencil time =   total 6.26581, avg 0.000626581
+# result-mpiopenmp-stencil-0.out:Stencil time [s] (max of all ranks):   total 1.025441, avg 0.000103
+# result-mpiopenmp-stencil-1.out:Stencil time [s] (max of all ranks):   total 0.998884, avg 0.000100
+# result-mpiopenmp-stencil-2.out:Stencil time [s] (max of all ranks):   total 1.086116, avg 0.000109
+# result-mpiopenmp-stencil-3.out:Stencil time [s] (max of all ranks):   total 1.052474, avg 0.000105
+# result-mpiopenmp-stencil-4.out:Stencil time [s] (max of all ranks):   total 1.094922, avg 0.000109
+# result-mpiopenmp-stencil-5.out:Stencil time [s] (max of all ranks):   total 1.060298, avg 0.000106
+# result-mpiopenmp-stencil-6.out:Stencil time [s] (max of all ranks):   total 1.100519, avg 0.000110
+# result-mpiopenmp-stencil-7.out:Stencil time [s] (max of all ranks):   total 1.067917, avg 0.000107
+# result-mpiopenmp-stencil-8.out:Stencil time [s] (max of all ranks):   total 1.108560, avg 0.000111
 ```
