@@ -1,3 +1,17 @@
+chapel/stencil-opt
+chapel/stencil-opt_real
+chapel/stencil-stencildist
+chapel/stencil-stencildist_real
+chapel/stencil-blockdist
+chapel/stencil-blockdist_real
+
+mpiomp/MPIOMP/Stencil/stencil
+
+
+
+
+
+
 # Prerequisites
 *.d
 

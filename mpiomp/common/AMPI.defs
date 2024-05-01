@@ -1,0 +1,11 @@
+include ../../common/make.defs
+ifeq ($(CHARMTOP),)
+    AMPICC=true
+else
+    AMPICC=$(CHARMTOP)/bin/ampicc
+endif
+CCOMPILER=$(AMPICC)
+CITRANSLATOR=$(AMPICC) -E
+CLINKER=$(CCOMPILER) -language ampi
+COMOBJS=MPI_bail_out.o wtime.o
+PROG_ENV=-DADAPTIVE_MPI
