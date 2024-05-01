@@ -127,3 +127,43 @@ for job in job-chpl-stencil-opt-{0,1,2}; do sbatch $job; sleep 1; done;
 ## Parsing results
 
 TODO
+
+```sh
+cd results && grep 'MFlops/s' result-*.out
+# result-chpl-stencil-blockdist-0.out:Rate (MFlops/s): 5718.770795  Avg time (s): 0.000210985  
+# result-chpl-stencil-blockdist-1.out:Rate (MFlops/s): 6373.674810  Avg time (s): 0.000382058  
+# result-chpl-stencil-blockdist-2.out:Rate (MFlops/s): 11568.376759  Avg time (s): 0.000423846 
+# result-chpl-stencil-blockdist-3.out:Rate (MFlops/s): 19732.235709  Avg time (s): 0.000499163  
+# result-chpl-stencil-blockdist-4.out:Rate (MFlops/s): 35904.429223  Avg time (s): 0.000550562  
+# result-chpl-stencil-blockdist-5.out:Rate (MFlops/s): 64904.373252  Avg time (s): 0.000610399  
+# result-chpl-stencil-blockdist-6.out:Rate (MFlops/s): 109502.789410  Avg time (s): 0.00072492  
+# result-chpl-stencil-blockdist-7.out:Rate (MFlops/s): 177335.739180  Avg time (s): 0.000896095
+# result-chpl-stencil-blockdist-8.out:Rate (MFlops/s): 363065.576429  Avg time (s): 0.000876274 
+# result-chpl-stencil-opt-0.out:Rate (MFlops/s): 51729.761711  Avg time (s): 2.33246e-05                  
+# result-chpl-stencil-opt-1.out:Rate (MFlops/s): 15504.278913  Avg time (s): 0.000157061                   
+# result-chpl-stencil-opt-2.out:Rate (MFlops/s): 17933.643687  Avg time (s): 0.000273409                   
+# result-chpl-stencil-opt-3.out:Rate (MFlops/s): 33231.901627  Avg time (s): 0.00029639                    
+# result-chpl-stencil-opt-4.out:Rate (MFlops/s): 49095.887689  Avg time (s): 0.000402632                    
+# result-chpl-stencil-opt-5.out:Rate (MFlops/s): 87528.937457  Avg time (s): 0.000452623
+# result-chpl-stencil-opt-6.out:Rate (MFlops/s): 100693.410241  Avg time (s): 0.000788341
+# result-chpl-stencil-opt-7.out:Rate (MFlops/s): 249677.655642  Avg time (s): 0.000636459
+# result-chpl-stencil-opt-8.out:Rate (MFlops/s): 275685.284717  Avg time (s): 0.00115401
+# result-chpl-stencil-stencildist-0.out:Rate (MFlops/s): 4926.889403  Avg time (s): 0.000244896
+# result-chpl-stencil-stencildist-1.out:Rate (MFlops/s): 6387.207937  Avg time (s): 0.000381249
+# result-chpl-stencil-stencildist-2.out:Rate (MFlops/s): 9774.551323  Avg time (s): 0.000501631
+# result-chpl-stencil-stencildist-3.out:Rate (MFlops/s): 15918.187858  Avg time (s): 0.000618764
+# result-chpl-stencil-stencildist-4.out:Rate (MFlops/s): 25185.133845  Avg time (s): 0.000784892
+# result-chpl-stencil-stencildist-5.out:Rate (MFlops/s): 43283.345777  Avg time (s): 0.000915308
+# result-chpl-stencil-stencildist-6.out:Rate (MFlops/s): 87557.971839  Avg time (s): 0.000906608
+# result-chpl-stencil-stencildist-7.out:Rate (MFlops/s): 103107.417607  Avg time (s): 0.0015412
+# result-chpl-stencil-stencildist-8.out:Rate (MFlops/s): 192475.513195  Avg time (s): 0.00165291
+# result-mpiopenmp-stencil-0.out:Rate (MFlops/s), including communication and increment time: 9307.714335 
+# result-mpiopenmp-stencil-1.out:Rate (MFlops/s), including communication and increment time: 18071.849676 
+# result-mpiopenmp-stencil-2.out:Rate (MFlops/s), including communication and increment time: 32747.665417 
+# result-mpiopenmp-stencil-3.out:Rate (MFlops/s), including communication and increment time: 65651.559075 
+# result-mpiopenmp-stencil-4.out:Rate (MFlops/s), including communication and increment time: 123187.112312 
+# result-mpiopenmp-stencil-5.out:Rate (MFlops/s), including communication and increment time: 251367.062402 
+# result-mpiopenmp-stencil-6.out:Rate (MFlops/s), including communication and increment time: 469215.976793 
+# result-mpiopenmp-stencil-7.out:Rate (MFlops/s), including communication and increment time: 901721.422619 
+# result-mpiopenmp-stencil-8.out:Rate (MFlops/s), including communication and increment time: 1314397.692118
+```
