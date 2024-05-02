@@ -19,4 +19,4 @@ echo ">>> module list"
 module list
 
 echo ">>> srun log"
-srun --exclusive ../mpiomp/MPIOPENMP/Stencil/stencil $OMP_NUM_THREADS 10000 362
+srun --exclusive ../mpiomp/MPIOPENMP/Stencil/stencil $OMP_NUM_THREADS 100 5792

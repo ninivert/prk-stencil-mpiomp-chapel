@@ -3,10 +3,10 @@
 import math, os, stat, argparse
 from pathlib import Path
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument('-a', '--account', type=str, help='--account for slurm job', required=True)
-parser.add_argument('--iterations', type=int, default=10_000, help='number of iterations')
-parser.add_argument('--base-gridsize', type=int, default=2**8, help='grid size when running on one node')
+parser.add_argument('--iterations', type=int, default=100, help='number of iterations')
+parser.add_argument('--base-gridsize', type=int, default=2**16, help='grid size when running on one node')
 parser.add_argument('--walltime', type=str, default='00:00:01', help='--time for slurm job')
 parser.add_argument('--partition', type=str, default='normal', help='--partition for slurm job')
 parser.add_argument('--constraint', type=str, default='gpu', help='--constraint for slurm job')
@@ -62,7 +62,7 @@ echo ">>> srun log"
 ../chapel/{EXE} -nl {NUMNODES} --iterations {NUMITER} --order {GRIDSIZE}
 """
 
-for lang, exe in ("chpl", "stencil-opt"), ("chpl", "stencil-blockdist"), ("chpl", "stencil-stencildist"), ("mpiopenmp", "stencil"):
+for lang, exe in ("chpl", "stencil-opt"), ("chpl", "stencil-blockdist"), ("chpl", "stencil-stencildist"), ("chpl", "stencil-opt-v1.22"), ("mpiopenmp", "stencil"):
     for lognumnodes in range(0, 9):
         numnodes = 2**lognumnodes
         gridsize = int(args.base_gridsize * math.sqrt(numnodes))

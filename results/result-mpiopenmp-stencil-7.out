@@ -2,7 +2,7 @@
 Currently Loaded Modulefiles:
   1) modules/3.2.11.4
   2) craype-network-aries
-  3) cce/14.0.0
+  3) cce/12.0.3
   4) craype/2.7.10
   5) cray-libsci/20.09.1
   6) udreg/2.3.2-7.0.3.1_3.13__g5f0d670.ari
@@ -22,58 +22,40 @@ Currently Loaded Modulefiles:
  20) slurm/20.11.8-4
  21) craype-haswell
  22) cray-python/3.9.4.1
- 23) daint-gpu/21.09
- 24) craype-hugepages16M
- 25) Base-opts/2.4.142-7.0.3.1_3.7__g8f27585.ari
+ 23) craype-hugepages16M
+ 24) Base-opts/2.4.142-7.0.3.1_3.7__g8f27585.ari
 >>> srun log
 Parallel Research Kernels version 2.17
 MPI+OPENMP stencil execution on 2D grid
 Number of ranks        = 128
 Number of threads      = 12
-Grid size              = 2896
+Grid size              = 46340
 Radius of stencil      = 2
 Tiles in x/y-direction = 8/16
 Type of stencil        = star
 Data type              = double precision
 Compact representation of stencil loop body
-Number of iterations   = 10000
-ERROR: L1 norm = 19980.685400, Reference L1 norm = 20002.000000
-Rate (MFlops/s), including communication and increment time: 901721.422619 
-Total time [s] (max of all ranks):     total 1.762292, avg 0.000176
-Comm time [s] (max of all ranks):      total 0.473501, avg 0.000047
-Stencil time [s] (max of all ranks):   total 1.067917, avg 0.000107
-Increment time [s] (max of all ranks): total 0.280129, avg 0.000028
+Number of iterations   = 100
+ERROR: L1 norm = 203.701294, Reference L1 norm = 202.000000
+Rate (MFlops/s), including communication and increment time: 1892837.283284 
+Total time [s] (max of all ranks):     total 2.155149, avg 0.021551
+Comm time [s] (max of all ranks):      total 0.063850, avg 0.000638
+Stencil time [s] (max of all ranks):   total 1.640522, avg 0.016405
+Increment time [s] (max of all ranks): total 0.479805, avg 0.004798
 
 
-Batch Job Summary Report (version 21.01.1) for Job "mpiopenmp-stencil-7" (53192328) on daint
+Batch Job Summary Report (version 21.01.1) for Job "mpiopenmp-stencil-7" (53197885) on daint
 
 Job information (1/2)
 -----------------------------------------------------------------------------------------------------
              Submit            Eligible               Start                 End    Elapsed Time limit
 ------------------- ------------------- ------------------- ------------------- ---------- ----------
-2024-05-01T16:58:00 2024-05-01T16:58:00 2024-05-01T16:59:57 2024-05-01T17:00:12   00:00:15   00:01:00
+2024-05-01T23:18:34 2024-05-01T23:18:34 2024-05-01T23:20:16 2024-05-01T23:20:36   00:00:20   00:01:00
 -----------------------------------------------------------------------------------------------------
 
 Job information (2/2)
 -------------------------------------------------------------
     Username      Account    Partition   NNodes        Energy
 ------------ ------------ ------------ -------- -------------
-      nvadot        s1249       normal      128     87.760 kJ
-
-
-
-Batch Job Summary Report (version 21.01.1) for Job "mpiopenmp-stencil-7" (53192328) on daint
-
-Job information (1/2)
------------------------------------------------------------------------------------------------------
-             Submit            Eligible               Start                 End    Elapsed Time limit
-------------------- ------------------- ------------------- ------------------- ---------- ----------
-2024-05-01T16:58:00 2024-05-01T16:58:00 2024-05-01T16:59:57 2024-05-01T17:00:12   00:00:15   00:01:00
------------------------------------------------------------------------------------------------------
-
-Job information (2/2)
--------------------------------------------------------------
-    Username      Account    Partition   NNodes        Energy
------------- ------------ ------------ -------- -------------
-      nvadot        s1249       normal        4     87.760 kJ
+      nvadot        s1249       normal      128    107.981 kJ
 

@@ -21,4 +21,4 @@ echo ">>> compilation info"
 ../chapel/stencil-opt --about
 
 echo ">>> srun log"
-../chapel/stencil-opt -nl 128 --iterations 10000 --order 2896
+../chapel/stencil-opt -nl 128 --iterations 100 --order 46340

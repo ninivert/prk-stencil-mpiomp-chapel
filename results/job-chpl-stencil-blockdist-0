@@ -21,4 +21,4 @@ echo ">>> compilation info"
 ../chapel/stencil-blockdist --about
 
 echo ">>> srun log"
-../chapel/stencil-blockdist -nl 1 --iterations 10000 --order 256
+../chapel/stencil-blockdist -nl 1 --iterations 100 --order 4096

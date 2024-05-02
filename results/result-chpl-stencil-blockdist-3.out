@@ -1,5 +1,5 @@
 >>> printchplenv --all
-machine info: Linux nid04191 5.3.18-24.46_6.0.29-cray_ari_c #1 SMP Mon Mar 14 09:11:41 UTC 2022 (6c38a31) x86_64
+machine info: Linux nid02726 5.3.18-24.46_6.0.29-cray_ari_c #1 SMP Mon Mar 14 09:11:41 UTC 2022 (6c38a31) x86_64
 CHPL_HOME: /users/nvadot/chapel/chapel *
 script location: /users/nvadot/chapel/chapel/util/chplenv
 CHPL_HOST_PLATFORM: cray-xc
@@ -39,7 +39,7 @@ CHPL_SANITIZE_EXE: none
 Currently Loaded Modulefiles:
   1) modules/3.2.11.4
   2) craype-network-aries
-  3) cce/14.0.0
+  3) cce/12.0.3
   4) craype/2.7.10
   5) cray-libsci/20.09.1
   6) udreg/2.3.2-7.0.3.1_3.13__g5f0d670.ari
@@ -60,10 +60,11 @@ Currently Loaded Modulefiles:
  21) craype-haswell
  22) cray-python/3.9.4.1
  23) daint-gpu/21.09
- 24) craype-hugepages16M
- 25) Base-opts/2.4.142-7.0.3.1_3.7__g8f27585.ari
+ 24) CMake/3.22.1
+ 25) craype-hugepages16M
+ 26) Base-opts/2.4.142-7.0.3.1_3.7__g8f27585.ari
 >>> compilation info
-Compilation command: chpl --fast -suseBlockDist=true -o stencil-blockdist stencil.chpl 
+Compilation command: chpl --fast -suseBlockDist -o stencil-blockdist stencil.chpl 
 Chapel compiler version: 2.1.0 pre-release (3b243caef9)
 Chapel environment:
   CHPL_HOME: /users/nvadot/chapel/chapel
@@ -148,7 +149,7 @@ Chapel environment:
   CHPL_TARGET_MEM: jemalloc
   CHPL_TARGET_PLATFORM: cray-xc
   CHPL_TARGET_SYSTEM_COMPILE_ARGS: -I/opt/cray/pe/mpt/7.7.18/gni/mpich-crayclang/10.0/include -I/opt/cray/pe/libsci/20.09.1/CRAYCLANG/9.0/x86_64/include -I/opt/cray/rca/2.2.20-7.0.3.1_3.15__g8e3fb5b.ari/include -I/opt/cray/alps/6.6.67-7.0.3.1_3.18__gb91cd181.ari/include -I/opt/cray/xpmem/default/include -I/opt/cray/gni-headers/default/include -I/opt/cray/dmapp/default/include -I/opt/cray/pe/pmi/5.0.17/include -I/opt/cray/ugni/default/include -I/opt/cray/udreg/default/include -I/opt/cray/pe/atp/3.14.5/include -I/opt/cray/wlm_detect/1.3.3-7.0.3.1_3.6__g7109084.ari/include -I/opt/cray/krca/2.2.8-7.0.3.1_3.14__g59af36e.ari/include -I/opt/cray-hss-devel/9.0.0/include
-  CHPL_TARGET_SYSTEM_LINK_ARGS: -lm -lpthread -lhugetlbfs -L/opt/cray/dmapp/default/lib64 -L/opt/cray/pe/mpt/7.7.18/gni/mpich-crayclang/10.0/lib -L/opt/cray/pe/libsci/20.09.1/CRAYCLANG/9.0/x86_64/lib -L/opt/cray/rca/2.2.20-7.0.3.1_3.15__g8e3fb5b.ari/lib64 -L/opt/cray/pe/pmi/5.0.17/lib64 -L/opt/cray/ugni/default/lib64 -L/opt/cray/pe/atp/3.14.5/lib -L/opt/cray/pe/cce/14.0.0/cce/x86_64/lib/pkgconfig/../ -L/opt/gcc/10.3.0/snos/lib64 -L/opt/cray/pe/gcc/10.3.0/snos/lib64 -L/opt/cray/pe/cce/14.0.0/cce/x86_64/lib/pkgconfig/../ -lAtpSigHandler -Wl,-rpath,/opt/cray/pe/atp/3.14.5/lib -Wl,--undefined=__libAtpSigHandler_ctor -Wl,-Ttext-segment=0x20000000 -lrca -lugni -Wl,--whole-archive,-lhugetlbfs,--no-whole-archive -lpmi -Wl,--as-needed,-lmpich_crayclang,--no-as-needed -Wl,--as-needed,-lsci_cray_mpi,--no-as-needed -Wl,--as-needed,-lsci_cray,--no-as-needed -Wl,--as-needed,-lstdc++,--no-as-needed -Wl,--as-needed,-lpgas-dmapp,--no-as-needed -lquadmath -lmodules -lfi -lcraymath -lf -lu -lcsup
+  CHPL_TARGET_SYSTEM_LINK_ARGS: -lm -lpthread -lhugetlbfs -L/opt/cray/dmapp/default/lib64 -L/opt/cray/pe/mpt/7.7.18/gni/mpich-crayclang/10.0/lib -L/opt/cray/pe/libsci/20.09.1/CRAYCLANG/9.0/x86_64/lib -L/opt/cray/rca/2.2.20-7.0.3.1_3.15__g8e3fb5b.ari/lib64 -L/opt/cray/pe/pmi/5.0.17/lib64 -L/opt/cray/ugni/default/lib64 -L/opt/cray/pe/atp/3.14.5/lib -L/opt/cray/pe/cce/12.0.3/cce/x86_64/lib/pkgconfig/../ -lAtpSigHandler -Wl,-rpath,/opt/cray/pe/atp/3.14.5/lib -Wl,--undefined=__libAtpSigHandler_ctor -Wl,-Ttext-segment=0x20000000 -lrca -lugni -Wl,--whole-archive,-lhugetlbfs,--no-whole-archive -lpmi -Wl,--as-needed,-lmpich_crayclang,--no-as-needed -Wl,--as-needed,-lsci_cray_mpi,--no-as-needed -Wl,--as-needed,-lsci_cray,--no-as-needed -Wl,--as-needed,-lpgas-dmapp,--no-as-needed -lquadmath -lmodules -lfi -lcraymath -lf -lu -lcsup
   CHPL_TASKS: qthreads
   CHPL_THIRD_PARTY: /users/nvadot/chapel/chapel/third-party
   CHPL_TIMERS: generic
@@ -158,33 +159,33 @@ Parallel Research Kernels Version 2.17
 Serial stencil execution on 2D grid
 Number of ranks      = 8
 Number of threads    = 12
-Grid size            = 724
+Grid size            = 11585
 Radius of stencil    = 2
 Type of stencil      = star
 Data type            = real(64)
 Untiled
-Number of iterations = 10000
+Number of iterations = 100
 Distribution         = Block
 Solution validates
-Rate (MFlops/s): 19732.235709  Avg time (s): 0.000499163
-total time =     total 4.99163, avg 0.000499163
-stencil time =   total 4.76875, avg 0.000476875
-increment time = total 0.221042, avg 2.21042e-05
-comm time =      total 0.000248, avg 2.48e-08
+Rate (MFlops/s): 37812.229750  Avg time (s): 0.0673928
+total time =     total 6.73928, avg 0.0673928
+stencil time =   total 6.25309, avg 0.0625309
+increment time = total 0.486114, avg 0.00486114
+comm time =      total 2e-06, avg 2e-08
 
 
-Batch Job Summary Report (version 21.01.1) for Job "chpl-stencil-blockdist-3" (53192215) on daint
+Batch Job Summary Report (version 21.01.1) for Job "chpl-stencil-blockdist-3" (53210555) on daint
 
 Job information (1/2)
 -----------------------------------------------------------------------------------------------------
              Submit            Eligible               Start                 End    Elapsed Time limit
 ------------------- ------------------- ------------------- ------------------- ---------- ----------
-2024-05-01T16:50:48 2024-05-01T16:50:48 2024-05-01T16:52:24 2024-05-01T16:52:50   00:00:26   00:01:00
+2024-05-02T13:06:40 2024-05-02T13:06:40 2024-05-02T13:08:57 2024-05-02T13:09:42   00:00:45   00:01:00
 -----------------------------------------------------------------------------------------------------
 
 Job information (2/2)
 -------------------------------------------------------------
     Username      Account    Partition   NNodes        Energy
 ------------ ------------ ------------ -------- -------------
-      nvadot        s1249       normal        8     11.549 kJ
+      nvadot        s1249       normal        8     19.333 kJ
 
