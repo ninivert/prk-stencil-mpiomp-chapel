@@ -1,6 +1,6 @@
 # prk-stencil-mpiomp-chapel
 
-Compare a weak scaling for a star stencil computation.
+Compare a weak scaling for a star stencil computation. The goal of this repo is **NOT** to evaluate raw Chapel performance against a well-optimized C+MPI+OMP program (for this see https://chapel-lang.org/performance.html), but rather to demonstrate the flexibility of Chapel for running on various cluster architectures, and evaluate possible overheads in a realistic scenario (i.e. programs a student could write, not HPC-expert level). This repo is by no means complete, or an "good" reference for how to configure Chapel, but should contain useful information for people wanting to try out Chapel on non-Cray clusters.
 
 We take
 - Radius of the star stencil R = 2 (known at compile time)

@@ -1,15 +1,19 @@
-import plotext as plt
 import glob
 import re
 import os
 import math
 from pprint import pprint
-import numpy as np
 from pathlib import Path
 import argparse
+import numpy as np
+import plotext as plt
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--directory', type=Path, default=Path('.'), help='directory containing the .out files')
+parser.add_argument('--width', type=float, default=60, help='width of the plot')
+parser.add_argument('--height', type=float, default=15, help='height of the plot')
+parser.add_argument('--marker', type=str, default='braille', help='marker to use for the lines')
+parser.add_argument('--theme', type=str, default='pro', help='plot theme')
 parser.add_argument('-v', '--verbose', action='store_true')
 
 args = parser.parse_args()
@@ -51,16 +55,16 @@ for name in dat.keys():
 plt.clf()
 
 for (name, xy), marker, color in zip(dat.items(), ('M', 'O', 'S', 'B'), ('green+', 'cyan+', 'orange+', 'red+')):
-    plt.plot(xy['lognodes'], np.log2(xy['mflops/s']), color=color, marker='braille')
+    plt.plot(xy['lognodes'], np.log2(xy['mflops/s']), color=color, marker=args.marker)
     plt.scatter(xy['lognodes'], np.log2(xy['mflops/s']), label=name, color=color, marker=marker, style='bold')
 
-plt.theme('clear')
+plt.theme(args.theme)
 # plt.yticks(np.arange(12, 23, 2))
-plt.xticks(np.arange(0, 6))
+plt.xticks(np.arange(0, len(xy)))
 plt.title("Scaling test")
 plt.ylabel("MFlops/s [log2]")
 plt.xlabel("number of nodes [log2]")
-plt.plotsize(60, 15)
+plt.plotsize(args.width, args.height)
 plt.show()
 
 # plot efficiency
@@ -68,14 +72,14 @@ plt.show()
 plt.clf()
 
 for (name, xy), marker, color in zip(dat.items(), ('M', 'O', 'S', 'B'), ('green+', 'cyan+', 'orange+', 'red+')):
-    plt.plot(xy['lognodes'], xy['efficiency'], color=color, marker='braille')
+    plt.plot(xy['lognodes'], xy['efficiency'], color=color, marker=args.marker)
     plt.scatter(xy['lognodes'], xy['efficiency'], color=color, marker=marker, style='bold')
 
-plt.theme('clear')
+plt.theme(args.theme)
 plt.ylim(0, 1)
-plt.xticks(np.arange(0, 6))
+plt.xticks(np.arange(0, len(xy)))
 plt.title("Efficiency")
 plt.ylabel("Efficiency ~ t0/t")
 plt.xlabel("number of nodes [log2]")
-plt.plotsize(60, 15)
+plt.plotsize(args.width, args.height)
 plt.show()
