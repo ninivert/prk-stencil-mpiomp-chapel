@@ -31,6 +31,7 @@ Job files are generated (for every executable and every number of nodes from 1, 
 # <...>
 # compile C+MPI++OMP version
 pushd mpiopenmp/MPIOPENMP/Stencil
+cd common && ln -s make.defs.nameOfTheCluster make.defs  # nameOfTheCluster in {cray,jed,marconi}
 make -B stencil DEFAULT_OPT_FLAGS='-O3'
 popd
 # compile Chapel version(s)
@@ -324,9 +325,367 @@ module load python/3.9.4
 
 ## Results
 
-TODO: update with results from Jed and marconi
+**In general**
 
-I observed on small grids (`--base-gridsize 2**8`) that Chapel has noticeable overhead. This overhead is less noticeable with larger grids (e.g. `2**12` use here). I also observed on single-locale tests that Chapel tends to perform better than OpenMP, which could explain at the `chpl-opt` curve lies above the `MPI+OMP` curve.
+I observed on small grids (`--base-gridsize 2**8`) that Chapel has noticeable overhead. This overhead is less noticeable with larger grids (e.g. `2**12` used here). I also observed on single-locale tests that Chapel tends to perform better than OpenMP, which could explain that the `chpl-opt` curve lies above the `MPI+OMP` curve.
 
-All curves scale linearly on the log-log plot. Efficiency shows that while Chapel is fast, there is a small overhead in the communications (that I expect to vanish relatively to larger problem sizes)
+All curves scale linearly on the log-log plot. Efficiency shows that while Chapel is fast, there is a small overhead in the communications (that I expect to vanish relatively to larger problem sizes).
 
+Cluster-specific plots follow. For Daint only a base gridsize of `2**12` is reported. Chapel unsurprisingly performs best on Daint, which is a Cray XC machine ; the Jed and Marconi clusters use `mpi` and `ofi` substrates respectively, and the overhead is larger, but still vanishes with larger grid sizes.
+
+**Daint**
+
+```sh
+python3 results/plot.py -d results/daint/size12 --width=60 --height=16 --marker='-' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"
+```
+
+```
+size-12
+                          Scaling test                      
+    ┌──────────────────────────────────────────────────────┐
+22.3┤ MM MPI+OMP                                          O│
+    │ OO chpl-opt                                  O------M│
+20.9┤                                        O-----M------ │
+19.5┤                                 O------M-----        │
+    │                              ---M------              │
+18.1┤                           O-----                     │
+    │                    O------                           │
+16.7┤             O------                                  │
+15.3┤       O-----M---                                     │
+    │O------M-----                                         │
+13.9┤M------                                               │
+    └┬──────┬─────┬──────┬─────────────────────────────────┘
+     0      1     2      3                                  
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O------O-----M------M------M-----M------M-----M------M│
+    │        -----O------O                                 │
+0.83┤                     ------O-----O------O-----O------O│
+0.67┤                                                      │
+    │                                                      │
+0.50┤                                                      │
+    │                                                      │
+0.33┤                                                      │
+0.17┤                                                      │
+    │                                                      │
+0.00┤                                                      │
+    └┬──────┬─────┬──────┬─────────────────────────────────┘
+     0      1     2      3                                  
+Efficiency ~ t0/t    number of nodes [log2]                 
+```
+
+**Jed**
+
+```sh
+for d in results/jed/substrate-mpi/size-*; do basename $d; python3 results/plot.py -d $d --width=60 --height=16 --marker='-' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"; done
+```
+
+```
+size-11
+                          Scaling test                      
+    ┌──────────────────────────────────────────────────────┐
+21.3┤ MM MPI+OMP                                          M│
+    │ OO chpl-opt                    M---------M---------- │
+20.0┤                     M----------                      │
+18.8┤           M---------                                 │
+    │M----------                                           │
+17.6┤                                                      │
+    │O                                         O----------O│
+16.3┤ --                             O---------            │
+15.1┤   ---                     -----                      │
+    │      ---            O-----                           │
+13.8┤         --O---------                                 │
+    └┬──────────┬─────────┬──────────┬─────────────────────┘
+     0          1         2          3                      
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O                                                     │
+    │ ---                                                  │
+0.83┤  - ----             M                                │
+0.67┤   -    ---M--------- -----                           │
+    │    -                      -----M                     │
+0.50┤     --                          ---                  │
+    │       -                            ---               │
+0.33┤        -                              ---M           │
+0.17┤         -                                 ----------M│
+    │          -O                                          │
+0.00┤            ---------O----------O---------O----------O│
+    └┬──────────┬─────────┬──────────┬─────────────────────┘
+     0          1         2          3                      
+Efficiency ~ t0/t    number of nodes [log2]                 
+size-12
+                          Scaling test                      
+    ┌──────────────────────────────────────────────────────┐
+21.9┤ MM MPI+OMP                                          M│
+    │ OO chpl-opt                                    ----- │
+20.8┤                                          M-----      │
+19.8┤                                M---------            │
+    │                     M----------                      │
+18.8┤           M---------                                O│
+    │      -----                               O---------- │
+17.7┤M-----                          O---------            │
+16.7┤O                          -----                      │
+    │ -----               O-----                           │
+15.7┤      -----O---------                                 │
+    └┬──────────┬─────────┬──────────┬─────────────────────┘
+     0          1         2          3                      
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O                                                     │
+    │ ----------M---------M                                │
+0.83┤  -                   ----------M                     │
+0.67┤   --                            -----                │
+    │     -                                ----M----------M│
+0.50┤      -                                               │
+    │       --                                             │
+0.33┤         -                                            │
+0.17┤          -O---------O----------O---------O           │
+    │                                           ----------O│
+0.00┤                                                      │
+    └┬──────────┬─────────┬──────────┬─────────────────────┘
+     0          1         2          3                      
+Efficiency ~ t0/t    number of nodes [log2]                 
+size-13
+                          Scaling test                      
+     ┌─────────────────────────────────────────────────────┐
+21.54┤ MM MPI+OMP                                         M│
+     │ OO chpl-opt                              M--------- │
+20.73┤                                     -----          O│
+19.92┤                               M-----          ----- │
+     │                          -----           O----      │
+19.12┤                     M----     O----------           │
+     │                -----       ---                      │
+18.31┤          M-----         ---                         │
+17.50┤     -----           O---                            │
+     │M----     O----------                                │
+16.70┤O---------                                           │
+     └┬─────────┬──────────┬─────────┬─────────────────────┘
+      0         1          2         3                      
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O----------M                                          │
+    │ ---        ---------M----------M---------M           │
+0.83┤    ----                                   -----      │
+0.67┤        ---O                                    -----M│
+    │            -----               O                     │
+0.50┤                 ----O---------- ---------O----------O│
+    │                                                      │
+0.33┤                                                      │
+0.17┤                                                      │
+    │                                                      │
+0.00┤                                                      │
+    └┬──────────┬─────────┬──────────┬─────────────────────┘
+     0          1         2          3                      
+Efficiency ~ t0/t    number of nodes [log2]                 
+size-14
+                          Scaling test                      
+     ┌─────────────────────────────────────────────────────┐
+20.76┤ MM MPI+OMP                                         O│
+     │ OO chpl-opt                                   ----- │
+20.12┤                                          O----      │
+19.47┤                               O----------           │
+     │                          -----                      │
+18.83┤                     M------                         │
+     │                -----O---                            │
+18.18┤          M----------                                │
+17.54┤       ---O-----                                     │
+     │    ------                                           │
+16.89┤O----                                                │
+     └┬─────────┬──────────┬─────────┬─────────────────────┘
+      0         1          2         3                      
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O----------M---------M                                │
+    │ ----------O          -----                           │
+0.83┤            -----          -----M                     │
+0.67┤                 ----O----------O---                  │
+    │                                 ---------O           │
+0.50┤                                       ---M-----      │
+    │                                           ----------O│
+0.33┤                                                      │
+0.17┤                                                      │
+    │                                                      │
+0.00┤                                                      │
+    └┬──────────┬─────────┬──────────┬─────────────────────┘
+     0          1         2          3                      
+Efficiency ~ t0/t    number of nodes [log2]                 
+size-15
+                          Scaling test                      
+     ┌─────────────────────────────────────────────────────┐
+21.51┤ MM MPI+OMP                                         O│
+     │ OO chpl-opt                                   ----- │
+20.74┤                                          O----     M│
+19.97┤                                     -----M--------- │
+     │                               O----------           │
+19.20┤                          -----                      │
+     │                     O----                           │
+18.43┤                -----                                │
+17.65┤          O-----                                     │
+     │     -----                                           │
+16.88┤O----                                                │
+     └┬─────────┬──────────┬─────────┬─────────────────────┘
+      0         1          2         3                      
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O                                                     │
+    │ ----------O---------O----------O                     │
+0.83┤                      -----      ---------O----------O│
+0.67┤                           -----M                     │
+    │                                 ---------M           │
+0.50┤                                           -----      │
+    │                                                -----M│
+0.33┤                                                      │
+0.17┤                                                      │
+    │                                                      │
+0.00┤                                                      │
+    └┬──────────┬─────────┬──────────┬─────────────────────┘
+     0          1         2          3                      
+Efficiency ~ t0/t    number of nodes [log2]                 
+```
+
+**Marconi**
+
+```sh
+for d in results/marconi/size*; do basename $d; python3 results/plot.py -d $d --width=60 --height=16 --marker='-' | sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"; done
+```
+
+```
+size12
+                          Scaling test                      
+     ┌─────────────────────────────────────────────────────┐
+16.39┤ MM MPI+OMP                                         M│
+     │ OO chpl-opt                                     --- │
+15.86┤O                                             ---    │
+15.33┤ --                                       ----       │
+     │   --                                  ---           │
+14.80┤M    --                            M---              │
+     │ ----  --                      ----                 O│
+14.27┤     ------               -----                ----- │
+13.74┤         ----         ----               ------      │
+     │             ----M----             O-----            │
+13.21┤               --O-----------------                  │
+     └┬────────────────┬─────────────────┬────────────────┬┘
+      0                1                 2                3 
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O                                                     │
+    │ --                                                   │
+0.83┤   --                                                 │
+0.67┤     --                                               │
+    │       ---                                            │
+0.50┤         ---                                          │
+    │           ---                                       M│
+0.33┤             ---                   M----------------- │
+0.17┤               ---M----------------                   │
+    │                 -O----------------O                  │
+0.00┤                                    -----------------O│
+    └┬─────────────────┬────────────────┬─────────────────┬┘
+     0                 1                2                 3 
+Efficiency ~ t0/t    number of nodes [log2]                 
+size13
+                          Scaling test                      
+     ┌─────────────────────────────────────────────────────┐
+18.58┤ MM MPI+OMP                                         M│
+     │ OO chpl-opt                                   ----- │
+17.99┤                                         ------      │
+17.40┤                                   M-----            │
+     │                          ---------                  │
+16.81┤                 M--------                           │
+     │M----------------                                   O│
+16.21┤O                                           -------- │
+15.62┤ -----                             O--------         │
+     │      ------              ---------                  │
+15.03┤            -----O--------                           │
+     └┬────────────────┬─────────────────┬────────────────┬┘
+      0                1                 2                3 
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O                                                     │
+    │ ----                                                 │
+0.83┤   -------                                            │
+0.67┤     --   ----                                        │
+    │       ---    ----M                                  M│
+0.50┤          --       ----------------M----------------- │
+    │            --                                        │
+0.33┤              --                                      │
+0.17┤                --O----------------O-----------------O│
+    │                                                      │
+0.00┤                                                      │
+    └┬─────────────────┬────────────────┬─────────────────┬┘
+     0                 1                2                 3 
+Efficiency ~ t0/t    number of nodes [log2]                 
+size14
+                          Scaling test                      
+     ┌─────────────────────────────────────────────────────┐
+18.67┤ MM MPI+OMP                                         M│
+     │ OO chpl-opt                                    ---- │
+18.26┤                                            ----     │
+17.84┤                                        ----        O│
+     │                                   M----       ----- │
+17.43┤                          ---------      ------      │
+     │                 M--------         O-----            │
+17.01┤            -----            ------                  │
+16.59┤      ------           ------                        │
+     │M-----           O-----                              │
+16.18┤O----------------                                    │
+     └┬────────────────┬─────────────────┬────────────────┬┘
+      0                1                 2                3 
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O                                                     │
+    │ -----------------M                                   │
+0.83┤     -----         --------                           │
+0.67┤          ----             --------M                  │
+    │              ----O                 -----------------M│
+0.50┤                   ----------------O                  │
+    │                                    -----------------O│
+0.33┤                                                      │
+0.17┤                                                      │
+    │                                                      │
+0.00┤                                                      │
+    └┬─────────────────┬────────────────┬─────────────────┬┘
+     0                 1                2                 3 
+Efficiency ~ t0/t    number of nodes [log2]                 
+size15
+                          Scaling test                      
+     ┌─────────────────────────────────────────────────────┐
+18.79┤ MM MPI+OMP                                         M│
+     │ OO chpl-opt                                    ---- │
+18.36┤                                            ----     │
+17.93┤                                        ----        O│
+     │                                   M----       ----- │
+17.49┤                          ---------      ------      │
+     │                 M--------         O-----            │
+17.06┤            -----            ------                  │
+16.63┤      ------           ------                        │
+     │M-----           O-----                              │
+16.19┤O----------------                                    │
+     └┬────────────────┬─────────────────┬────────────────┬┘
+      0                1                 2                3 
+MFlops/s [log2]      number of nodes [log2]                 
+                           Efficiency                       
+    ┌──────────────────────────────────────────────────────┐
+1.00┤O                                                     │
+    │ -----------------M                                   │
+0.83┤     -----         --------                           │
+0.67┤          ----             --------M-----------------M│
+    │              ----O                                   │
+0.50┤                   ----------------O                  │
+    │                                    -----------------O│
+0.33┤                                                      │
+0.17┤                                                      │
+    │                                                      │
+0.00┤                                                      │
+    └┬─────────────────┬────────────────┬─────────────────┬┘
+     0                 1                2                 3 
+Efficiency ~ t0/t    number of nodes [log2]                 
+```
