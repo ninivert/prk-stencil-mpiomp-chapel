@@ -31,7 +31,7 @@ Job files are generated (for every executable and every number of nodes from 1, 
 # <...>
 # compile C+MPI++OMP version
 pushd mpiopenmp/MPIOPENMP/Stencil
-cd common && ln -s make.defs.nameOfTheCluster make.defs  # nameOfTheCluster in {cray,jed,marconi}
+cd common && ln -s make.defs.nameOfTheCluster make.defs && cd ..  # nameOfTheCluster in {cray,jed,marconi}
 make -B stencil DEFAULT_OPT_FLAGS='-O3'
 popd
 # compile Chapel version(s)
@@ -128,7 +128,7 @@ printchplenv --all
 
 Jed runs on OpenUCX (`ompi_info` reports the configure command line `--with-ucx=/path/to/ucx-1.12.1-mcggqmcvjobtoc4p26hednzka6pjghgm`). I tried setting `CHPL_COMM_SUBTRATE=ucx` (see https://chapel-lang.org/docs/main/platforms/infiniband.html#ucx-alternative), but found the performance to be very poor, see `results/jed/substrate-ucx` (this is also expected, as `ucx` conduit is considered experimental).
 
-An alternative is using the `mpi` substrate.
+An alternative is using the `mpi` substrate, which seems to provide better performance.
 
 
 ```sh
@@ -187,7 +187,7 @@ cd /path/to/prk-stencil-mpiomp-chapel/results
 
 ### Cineca Marconi
 
-This cluster has Intel OmniPath (100Gb/s) high-performance network (https://chapel-lang.org/docs/main/platforms/omnipath.html), so I set `CHPL_COMM_SUBSTRATE=ofi`.
+This cluster has the Intel OmniPath (100Gb/s) high-performance network (https://chapel-lang.org/docs/main/platforms/omnipath.html), so I set `CHPL_COMM_SUBSTRATE=ofi`.
 
 We load the most recent version of gcc (that also has an available openmpi installation, for reasons that will become apparent later...) installed on the cluster:
 
@@ -233,7 +233,7 @@ ld --version
 
 ```sh
 module load cmake/3.23.3 spack
-# load a newever version of ld by loading binutils
+# load a newer version of ld by loading binutils
 # in retrospect, it might be possible to skip loading gcc@10 (although not sure with loading libfabric)
 spack load gcc@10 binutils libfabric@1.14.1
 # override the gcc compiler so that we can load openmpi for reasons explained below
@@ -260,21 +260,23 @@ ld --version
 # This program has absolutely no warranty.
 ```
 
-Now the runtime build correctly !
+Now the runtime builds successfully !
 
-By default Gasnet with ofi will try to use SSH for job launches, but in this case Marconi does not seem to allow ssh'ing into compute nodes:
+By default Gasnet with `ofi` will try to use SSH for job launches, but in this case Marconi does not seem to allow ssh'ing into compute nodes:
 
 ```sh
 salloc -N 1 --time=00:00:05 --partition=skl_fua_prod
-# now in the salloc terminal
+# we are now in the salloc terminal
 srun hostname
 # r129c02s01
 ssh r129c02s01
 # ssh: connect to host r129c02s01 port 22: No route to host
-# NOTE: although for some reason, it works with partition bdw_all_serial ??
+# NOTE: although for some reason, this works with --partition=bdw_all_serial
+
+# <C-d> to return to original terminal
 ```
 
-So we have to set `GASNET_OFI_SPAWNER=mpi` and load `mpicc`.
+So we have to set `GASNET_OFI_SPAWNER=mpi` and load `mpicc` (`module load openmpi/3.0.0--gnu-7.3.0` from before):
 
 ```sh
 printchplenv
@@ -327,7 +329,7 @@ module load python/3.9.4
 
 **In general**
 
-I observed on small grids (`--base-gridsize 2**8`) that Chapel has noticeable overhead. This overhead is less noticeable with larger grids (e.g. `2**12` used here). I also observed on single-locale tests that Chapel tends to perform better than OpenMP, which could explain that the `chpl-opt` curve lies above the `MPI+OMP` curve.
+I observed on small grids (`--base-gridsize 2**8`) that Chapel has noticeable overhead. This overhead is less noticeable with larger grids (e.g. `2**12` used on Daint). I also observed on single-locale tests that Chapel tends to perform slighlt better than OpenMP on some clusters, which could explain that sometimes the `chpl-opt` curve lies above the `MPI+OMP` curve.
 
 All curves scale linearly on the log-log plot. Efficiency shows that while Chapel is fast, there is a small overhead in the communications (that I expect to vanish relatively to larger problem sizes).
 
