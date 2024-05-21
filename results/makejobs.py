@@ -4,12 +4,16 @@ import math, os, stat, argparse
 from pathlib import Path
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument('-a', '--account', type=str, help='--account for slurm job', required=True)
+parser.add_argument('--account', type=str, default=None, help='--account for slurm job. leave empty for default account')
 parser.add_argument('--iterations', type=int, default=100, help='number of iterations')
 parser.add_argument('--base-gridsize', type=int, default=2**16, help='grid size when running on one node')
 parser.add_argument('--walltime', type=str, default='00:00:01', help='--time for slurm job')
-parser.add_argument('--partition', type=str, default='normal', help='--partition for slurm job')
-parser.add_argument('--constraint', type=str, default='gpu', help='--constraint for slurm job')
+parser.add_argument('--partition', type=str, default=None, help='--partition for slurm job. leave empty for default partition')
+parser.add_argument('--constraint', type=str, default=None, help='--constraint for slurm job. leave empty for default constraint')
+parser.add_argument('--qos-serial', type=str, default=None, help='--qos when num nodes == 1. leave empty for default qos')
+parser.add_argument('--qos-parallel', type=str, default=None, help='--qos when num nodes > 1. leave empty for default qos')
+parser.add_argument('--cpus-per-task', type=str, default=None, help='--cpus-per-task for slurm job. leave empty for default')
+parser.add_argument('--switches', type=str, default=None, help='--switches set to 1 to stay within the same electrical group')
 args = parser.parse_args()
 
 from pprint import pprint
@@ -18,14 +22,16 @@ pprint(args)
 jobheader = """\
 #!/bin/bash -l
 #SBATCH --job-name="{LANG}-{EXE}-{LOGNUMNODES}"
-#SBATCH --account="{ACCOUNT}"
-#SBATCH --time={WALLTIME}
-#SBATCH --nodes={NUMNODES}
-#SBATCH --partition={PARTITION}
-#SBATCH --constraint={CONSTRAINT}
-#SBATCH --output=result-{LANG}-{EXE}-{LOGNUMNODES}.out
-## https://user.cscs.ch/access/running/#electrical-groups
-#SBATCH --switches=1
+#SBATCH --output="result-{LANG}-{EXE}-{LOGNUMNODES}.out"
+{SBATCH_ACCOUNT}
+{SBATCH_WALLTIME}
+{SBATCH_NUMNODES}
+#SBATCH --exclusive
+#SBATCH --mem=0
+{SBATCH_PARTITION}
+{SBATCH_CONSTRAINT}
+{SBATCH_SWITCHES}
+{SBATCH_CPUSPERTASK}
 """
 
 jobcode = {}
@@ -33,8 +39,6 @@ jobcode = {}
 jobcode["mpiopenmp"] = """\
 #SBATCH --ntasks-per-core=1
 #SBATCH --ntasks-per-node=1
-## disable hyperthreading. On Piz Daint (XC50) Intel Xeon E5-2690 v3 has 12 cores, 2 threads per core
-#SBATCH --cpus-per-task=12
 
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
@@ -62,13 +66,22 @@ echo ">>> srun log"
 ../chapel/{EXE} -nl {NUMNODES} --iterations {NUMITER} --order {GRIDSIZE}
 """
 
-for lang, exe in ("chpl", "stencil-opt"), ("chpl", "stencil-blockdist"), ("chpl", "stencil-stencildist"), ("chpl", "stencil-opt-v1.22"), ("mpiopenmp", "stencil"):
+for lang, exe in ("chpl", "stencil-opt"), ("chpl", "stencil-blockdist"), ("chpl", "stencil-stencildist"), ("mpiopenmp", "stencil"):
     for lognumnodes in range(0, 9):
         numnodes = 2**lognumnodes
         gridsize = int(args.base_gridsize * math.sqrt(numnodes))
         jobscript = (jobheader + jobcode[lang]).format(
-            LOGNUMNODES=lognumnodes, NUMNODES=numnodes, GRIDSIZE=gridsize, NUMITER=args.iterations,
-            LANG=lang, EXE=exe, ACCOUNT=args.account, WALLTIME=args.walltime, PARTITION=args.partition, CONSTRAINT=args.constraint
+            NUMNODES=numnodes, LOGNUMNODES=lognumnodes, GRIDSIZE=gridsize, NUMITER=args.iterations,
+            LANG=lang, EXE=exe,\
+            SBATCH_ACCOUNT='' if args.account is None else f'#SBATCH --account="{args.account}"', 
+            SBATCH_WALLTIME='' if args.walltime is None else f'#SBATCH --time="{args.walltime}"',
+            SBATCH_NUMNODES=f'#SBATCH --nodes={numnodes}',
+            SBATCH_PARTITION='' if args.partition is None else f'#SBATCH --partition="{args.partition}"',
+            SBATCH_CONSTRAINT='' if args.constraint is None else f'#SBATCH --constraint={args.constraint}',
+            SBATCH_SWITCHES='' if args.switches is None else f'#SBATCH --switches={args.switches}',
+            SBATCH_CPUSPERTASK='' if args.cpus_per_task is None else f'#SBATCH --cpus-per-task={args.cpus_per_task}',
+            SBATCH_QOS=('' if args.qos_serial is None else f'#SBATCH --qos={args.qos_serial}') if numnodes == 1 else \
+                       ('' if args.qos_parallel is None else f'#SBATCH --qos={args.qos_parallel}')
         )
         fp = Path(f"job-{lang}-{exe}-{lognumnodes}")
         with open(fp, 'w') as f:

@@ -5,7 +5,9 @@ chapel/stencil-stencildist_real
 chapel/stencil-blockdist
 chapel/stencil-blockdist_real
 
-mpiomp/MPIOMP/Stencil/stencil
+mpiomp/MPIOPENMP/Stencil/stencil
+
+results/job-*
 
 
 
