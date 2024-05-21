@@ -1,0 +1,203 @@
+manpath: warning: $MANPATH set, appending /etc/man_db.conf
+>>> printchplenv --all
+machine info: Linux r135c01s01 3.10.0-514.26.2.el7.x86_64 #1 SMP Tue Jul 4 15:04:05 UTC 2017 x86_64
+CHPL_HOME: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1 *
+script location: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/util/chplenv
+CHPL_HOST_PLATFORM: linux64
+CHPL_HOST_COMPILER: gnu
+  CHPL_HOST_CC: gcc
+  CHPL_HOST_CXX: g++
+CHPL_HOST_ARCH: x86_64
+CHPL_TARGET_PLATFORM: linux64
+CHPL_TARGET_COMPILER: llvm
+  CHPL_TARGET_CC: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang --gcc-toolchain=/cineca/prod/opt/compilers/gnu/7.3.0/none
+  CHPL_TARGET_CXX: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang++ --gcc-toolchain=/cineca/prod/opt/compilers/gnu/7.3.0/none
+  CHPL_TARGET_LD: mpicxx
+CHPL_TARGET_ARCH: x86_64
+CHPL_TARGET_CPU: skylake +
+CHPL_LOCALE_MODEL: flat
+CHPL_COMM: gasnet +
+  CHPL_COMM_SUBSTRATE: ofi +
+  CHPL_GASNET_SEGMENT: everything
+  CHPL_GASNET_VERSION: 1
+CHPL_TASKS: qthreads
+CHPL_LAUNCHER: gasnetrun_ofi +
+CHPL_TIMERS: generic
+CHPL_UNWIND: none
+CHPL_HOST_MEM: jemalloc
+CHPL_MEM: jemalloc
+CHPL_ATOMICS: cstdlib
+  CHPL_NETWORK_ATOMICS: none
+CHPL_GMP: bundled
+CHPL_HWLOC: bundled
+CHPL_RE2: bundled
+CHPL_LLVM: bundled +
+  CHPL_LLVM_SUPPORT: bundled
+  CHPL_LLVM_CONFIG: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/llvm-config
+  CHPL_LLVM_VERSION: 17
+CHPL_AUX_FILESYS: none
+CHPL_LIB_PIC: none
+CHPL_SANITIZE: none
+CHPL_SANITIZE_EXE: none
+>>> module list
+Currently Loaded Modulefiles:
+ 1) profile/base(default)           4) gnu/7.3.0                  
+ 2) cmake/3.23.3                    5) openmpi/3.0.0--gnu--7.3.0  
+ 3) spack/preprod_base_0.18.1_275   6) python/3.9.4               
+>>> compilation info
+Compilation command: chpl --fast stencil-opt.chpl 
+Chapel compiler version: 2.0.1
+Chapel environment:
+  CHPL_HOME: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1
+  CHPL_ATOMICS: cstdlib
+  CHPL_AUX_FILESYS: none
+  CHPL_COMM: gasnet
+  CHPL_COMM_SUBSTRATE: ofi
+  CHPL_COMPILER_SUBDIR: linux64/gnu/x86_64/hostmem-jemalloc/llvm-bundled/17/san-none
+  CHPL_CUDA_LIBDEVICE_PATH: none
+  CHPL_CUDA_PATH: 
+  CHPL_GASNET_SEGMENT: everything
+  CHPL_GASNET_UNIQ_CFG_PATH: linux64-x86_64-skylake-llvm-none/substrate-ofi/seg-everything
+  CHPL_GASNET_VERSION: 1
+  CHPL_GMP: bundled
+  CHPL_GMP_IS_OVERRIDDEN: False
+  CHPL_GMP_UNIQ_CFG_PATH: linux64-x86_64-skylake-llvm-none
+  CHPL_GPU: none
+  CHPL_GPU_ARCH: none
+  CHPL_GPU_MEM_STRATEGY: array_on_device
+  CHPL_HOST_ARCH: x86_64
+  CHPL_HOST_BIN_SUBDIR: linux64-x86_64
+  CHPL_HOST_BUNDLED_COMPILE_ARGS: 
+  CHPL_HOST_BUNDLED_LINK_ARGS: 
+  CHPL_HOST_CC: gcc
+  CHPL_HOST_COMPILER: gnu
+  CHPL_HOST_CPU: none
+  CHPL_HOST_CXX: g++
+  CHPL_HOST_JEMALLOC: bundled
+  CHPL_HOST_JEMALLOC_UNIQ_CFG_PATH: host/linux64-x86_64-gnu
+  CHPL_HOST_MEM: jemalloc
+  CHPL_HOST_PLATFORM: linux64
+  CHPL_HOST_SYSTEM_COMPILE_ARGS: 
+  CHPL_HOST_SYSTEM_LINK_ARGS: 
+  CHPL_HWLOC: bundled
+  CHPL_HWLOC_UNIQ_CFG_PATH: linux64-x86_64-skylake-llvm-none-flat
+  CHPL_LAUNCHER: gasnetrun_ofi
+  CHPL_LAUNCHER_SUBDIR: linux64/gnu/x86_64/loc-flat/comm-gasnet/ofi/everything/1/tasks-qthreads/launch-gasnetrun_ofi/tmr-generic/unwind-none/mem-jemalloc/atomics-cstdlib/lib_pic-none/san-none
+  CHPL_LIBFABRIC: none
+  CHPL_LIBFABRIC_UNIQ_CFG_PATH: linux64-x86_64-skylake-llvm-none
+  CHPL_LIBUNWIND_UNIQ_CFG_PATH: linux64-x86_64-skylake-llvm-none
+  CHPL_LIB_PIC: none
+  CHPL_LLVM: bundled
+  CHPL_LLVM_CLANG_C: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang --gcc-toolchain=/cineca/prod/opt/compilers/gnu/7.3.0/none
+  CHPL_LLVM_CLANG_CXX: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang++ --gcc-toolchain=/cineca/prod/opt/compilers/gnu/7.3.0/none
+  CHPL_LLVM_CONFIG: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/llvm-config
+  CHPL_LLVM_STATIC_DYNAMIC: static
+  CHPL_LLVM_SUPPORT: bundled
+  CHPL_LLVM_TARGET_CPU: skylake
+  CHPL_LLVM_UNIQ_CFG_PATH: linux64-x86_64
+  CHPL_LLVM_VERSION: 17
+  CHPL_LOCALE_MODEL: flat
+  CHPL_MAKE: gmake
+  CHPL_MEM: jemalloc
+  CHPL_NETWORK_ATOMICS: none
+  CHPL_PE_CHPL_PKGCONFIG_LIBS: 
+  CHPL_QTHREAD_UNIQ_CFG_PATH: linux64-x86_64-skylake-llvm-none-flat-jemalloc-bundled
+  CHPL_RE2: bundled
+  CHPL_RE2_IS_OVERRIDDEN: False
+  CHPL_RE2_UNIQ_CFG_PATH: linux64-x86_64-skylake-llvm-none
+  CHPL_ROCM_PATH: 
+  CHPL_RUNTIME_CPU: skylake
+  CHPL_RUNTIME_INCL: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include
+  CHPL_RUNTIME_LIB: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/lib
+  CHPL_RUNTIME_SUBDIR: linux64/llvm/x86_64/cpu-skylake/loc-flat/comm-gasnet/ofi/everything/1/tasks-qthreads/tmr-generic/unwind-none/mem-jemalloc/atomics-cstdlib/hwloc-bundled/re2-bundled/fs-none/lib_pic-none/san-none
+  CHPL_SANITIZE: none
+  CHPL_SANITIZE_EXE: none
+  CHPL_SYS_MODULES_SUBDIR: linux64-x86_64-llvm
+  CHPL_TARGET_ARCH: x86_64
+  CHPL_TARGET_BACKEND_CPU: skylake
+  CHPL_TARGET_BIN_SUBDIR: linux64-x86_64-skylake
+  CHPL_TARGET_BUNDLED_COMPILE_ARGS: -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/localeModels/flat -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/localeModels -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/comm/gasnet -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/comm -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/tasks/qthreads -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/qio -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/atomics/cstdlib -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/runtime/include/mem/jemalloc -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/utf8-decoder -DCHPL_JEMALLOC_PREFIX=chpl_je_ -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/gmp/install/linux64-x86_64-skylake-llvm-none/include -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-skylake-llvm-none-flat/include -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/qthread/install/linux64-x86_64-skylake-llvm-none-flat-jemalloc-bundled/include -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/jemalloc/install/target/linux64-x86_64-skylake-llvm-none/include -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/re2/install/linux64-x86_64-skylake-llvm-none/include -D_GNU_SOURCE=1 -DGASNET_PAR -D_REENTRANT -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/gasnet/install/linux64-x86_64-skylake-llvm-none/substrate-ofi/seg-everything/include -I/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/gasnet/install/linux64-x86_64-skylake-llvm-none/substrate-ofi/seg-everything/include/ofi-conduit -Wno-unused -Wunused-result -Wno-unused-parameter -Wno-address
+  CHPL_TARGET_BUNDLED_LINK_ARGS: -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/lib/linux64/llvm/x86_64/cpu-skylake/loc-flat/comm-gasnet/ofi/everything/1/tasks-qthreads/tmr-generic/unwind-none/mem-jemalloc/atomics-cstdlib/hwloc-bundled/re2-bundled/fs-none/lib_pic-none/san-none -lchpl -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/gmp/install/linux64-x86_64-skylake-llvm-none/lib -lgmp -Wl,-rpath,/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/gmp/install/linux64-x86_64-skylake-llvm-none/lib -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-skylake-llvm-none-flat/lib -lhwloc -Wl,-rpath,/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-skylake-llvm-none-flat/lib -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/qthread/install/linux64-x86_64-skylake-llvm-none-flat-jemalloc-bundled/lib -Wl,-rpath,/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/qthread/install/linux64-x86_64-skylake-llvm-none-flat-jemalloc-bundled/lib -lqthread -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-skylake-llvm-none-flat/lib -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/jemalloc/install/target/linux64-x86_64-skylake-llvm-none/lib -ljemalloc -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/re2/install/linux64-x86_64-skylake-llvm-none/lib -lre2 -Wl,-rpath,/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/re2/install/linux64-x86_64-skylake-llvm-none/lib -D_GNU_SOURCE=1 -L/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/gasnet/install/linux64-x86_64-skylake-llvm-none/substrate-ofi/seg-everything/lib -lgasnet-ofi-par -L/marconi_work/PROJECTS/spack/preprod/02/install/0.18/linux-centos7-haswell/gcc-4.8.5/libfabric-1.14.1-cs4w4atsmvhq3qpqaxete3dbjc2qlozf/lib -lfabric
+  CHPL_TARGET_CC: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang --gcc-toolchain=/cineca/prod/opt/compilers/gnu/7.3.0/none
+  CHPL_TARGET_COMPILER: llvm
+  CHPL_TARGET_COMPILER_PRGENV: none
+  CHPL_TARGET_CPU: skylake
+  CHPL_TARGET_CPU_FLAG: arch
+  CHPL_TARGET_CXX: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang++ --gcc-toolchain=/cineca/prod/opt/compilers/gnu/7.3.0/none
+  CHPL_TARGET_JEMALLOC: bundled
+  CHPL_TARGET_JEMALLOC_UNIQ_CFG_PATH: target/linux64-x86_64-skylake-llvm-none
+  CHPL_TARGET_LD: mpicxx
+  CHPL_TARGET_MEM: jemalloc
+  CHPL_TARGET_PLATFORM: linux64
+  CHPL_TARGET_SYSTEM_COMPILE_ARGS: 
+  CHPL_TARGET_SYSTEM_LINK_ARGS: -lpthread -lm
+  CHPL_TASKS: qthreads
+  CHPL_THIRD_PARTY: /marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party
+  CHPL_TIMERS: generic
+  CHPL_UNWIND: none
+>>> srun log
+/marconi/home/userexternal/nvadot00/chapel/chapel-2.0.1/third-party/gasnet/install/linux64-x86_64-skylake-llvm-none/substrate-ofi/seg-everything/bin/gasnetrun_ofi -n 8 -N 8 -c 0 -E SLURM_JOB_START_TIME,SLURM_NODELIST,HYDRA_LAUNCHER_EXTRA_ARGS,CPLUS_INCLUDE_PATH,SLURM_JOB_NAME,MANPATH,XDG_SESSION_ID,SLURMD_NODENAME,SLURM_TOPOLOGY_ADDR,HOSTNAME,SPACK_ROOT,SPACK_USER_CONFIG_PATH,M4,SLURM_PRIO_PROCESS,_LMFILES__modshare,MODULEPATH_modshare,SHELL,TERM,MODULES_CMD,SPACK_HOME,SLURM_JOB_QOS,HISTSIZE,SLURM_TOPOLOGY_ADDR_PATTERN,SSH_CLIENT,TMPDIR,LIBRARY_PATH,SPACK_UPSTREAM_MODULE_DIR,QTDIR,SLURM_JOB_END_TIME,QTINC,SSH_TTY,LIBPATH_modshare,QT_GRAPHICSSYSTEM_CHECKED,SPACK_ROOT_CACHE,SLURM_NNODES,USER,CMAKE_HOME,LS_COLORS,LD_LIBRARY_PATH,MODULES_LMPREREQ,LESSSECURE,ENV,MODULES_LMALTNAME,SLURM_JOBID,CPATH,HYDRA_BOOTSTRAP,SPACK_ROOT_MODULES_TEMPLATES_SUFFIX,BA_MPM_PROFILE,LIBPATH,FERMI_SCRATCH,SPACK_MODULE_VERSION,SPACK_ROOT_INSTALL,SPACK_LOADED_HASHES,SLURM_TASKS_PER_NODE,PATH,MAIL,MODULES_LMCONFLICT,SPACK_ROOT_MODULES,SLURM_CONF,SPACK_UPSTREAM_MODULES_DIR,SLURM_JOB_ID,WORK,C_INCLUDE_PATH,SLURM_JOB_USER,PWD,FERMI_HOME,SPACK_DEPLOY_CLUSTER_NAME,_LMFILES_,I_MPI_HYDRA_BOOTSTRAP_EXEC_EXTRA_ARGS,SPACK_UPSTREAM_CACHE_DIR,LANG,MODULEPATH,SPACK_USER_CACHE_PATH,_INC,SLURM_JOB_UID,KDEDIRS,LOADEDMODULES,SLURM_NODEID,PYTHONHOME,SLURM_SUBMIT_DIR,SPACK_UPSTREAM_INSTALL_DIR,F77,SLURM_TASK_PID,PRTE_MCA_plm_slurm_args,SLURM_CPUS_ON_NODE,SLURM_PROCID,ENVIRONMENT,HISTCONTROL,CXX,SLURM_JOB_NODELIST,_LIB,HOME,SHLVL,CHPL_HOME,MODULES_LMCONFLICT_modshare,PATH_modshare,SLURM_LOCALID,OPENMPI_HOME,SLURM_JOB_GID,SLURM_JOB_CPUS_PER_NODE,SLURM_CLUSTER_NAME,CINECA_SCRATCH,TAPE,SLURM_GTIDS,SLURM_SUBMIT_HOST,HPC_SYSTEM,FC,MANPATH_modshare,SLURM_JOB_PARTITION,BASH_ENV,OMPI_MCA_plm_slurm_args,LOGNAME,QTLIB,MODULES_LMPREREQ_modshare,LD_LIBRARY_PATH_modshare,SLURM_JOB_ACCOUNT,SSH_CONNECTION,MODULES_LMALTNAME_modshare,_INCLUDE,CLUSTER,SLURM_JOB_NUM_NODES,I_MPI_HYDRA_BOOTSTRAP,MODULESHOME,LESSOPEN,PKG_CONFIG_PATH,LOADEDMODULES_modshare,SLURM_SCRIPT_CONTEXT,SPACK_PYTHON,ACLOCAL_PATH,XDG_RUNTIME_DIR,CC,CMAKE_PREFIX_PATH,FERMI_WORK,QT_PLUGIN_PATH,PYTHON_HOME,SPACK_UPSTREAM_USER_CACHE_PATH,SLURM_MEM_PER_NODE,DRES,GNU_HOME,BASH_FUNC__spack_shell_wrapper(),BASH_FUNC_module(),BASH_FUNC_spack(),BASH_FUNC_switchml(),BASH_FUNC__module_raw(),BASH_FUNC_ml(),_ /marconi/home/userexternal/nvadot00/code/prk-stencil-mpiomp-chapel/chapel/stencil-opt_real -v -nl 8 --iterations 100 --order 46340
+*** WARNING: Using OFI provider (sockets), which has not been validated to provide
+    WARNING: acceptable GASNet performance. You should consider using a more
+    WARNING: hardware-appropriate GASNet conduit. See ofi-conduit/README.
+*** WARNING: Using GASNet's ofi-conduit, which exists for portability convenience.
+    WARNING: Support was detected for native GASNet conduits: ofi
+    WARNING: You should *really* use the high-performance native GASNet conduit
+    WARNING: if communication performance is at all important in this program run.
+0: using core(s) 0-47
+oversubscribed = False
+7: using core(s) 0-47
+6: using core(s) 0-47
+5: using core(s) 0-47
+2: using core(s) 0-47
+1: using core(s) 0-47
+3: using core(s) 0-47
+4: using core(s) 0-47
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 8384512 byte stack size.
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 8384512 byte stack size.
+QTHREADS: Using 8384512 byte stack size.
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 8384512 byte stack size.
+QTHREADS: Using 8384512 byte stack size.
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 48 Shepherds
+QTHREADS: Using 1 Workers per Shepherd
+QTHREADS: Using 8384512 byte stack size.
+QTHREADS: Using 8384512 byte stack size.
+QTHREADS: Using 8384512 byte stack size.
+executing locale 7 of 8 on node 'r140c08s02'
+executing locale 3 of 8 on node 'r135c06s02'
+executing locale 1 of 8 on node 'r135c02s01'
+executing locale 4 of 8 on node 'r135c08s02'
+executing locale 0 of 8 on node 'r135c01s01'
+executing locale 6 of 8 on node 'r140c04s02'
+executing locale 2 of 8 on node 'r135c04s01'
+executing locale 5 of 8 on node 'r140c02s02'
+Parallel Research Kernels Version 2.17
+Parallel stencil execution on 2D grid
+Number of ranks      = 8
+Number of threads    = 48
+Grid size            = 46340
+Radius of stencil    = 2
+Type of stencil      = star
+Data type            = real(64)
+Number of iterations = 100
+Distribution         = Stencil
+Solution validates
+Rate (MFlops/s): 262987.253934  Avg time (s): 0.155116
+total time =     total 15.5116, avg 0.155116
+stencil time =   total 5.19612, avg 0.0519612
+increment time = total 4.3381, avg 0.043381
+comm time =      total 5.97727, avg 0.0597727

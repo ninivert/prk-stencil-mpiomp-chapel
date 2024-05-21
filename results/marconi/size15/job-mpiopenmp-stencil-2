@@ -1,0 +1,22 @@
+#!/bin/bash -l
+#SBATCH --job-name="mpiopenmp-stencil-2"
+##SBATCH --account="None"
+#SBATCH --time=00:03:00
+#SBATCH --nodes=4
+#SBATCH --partition=skl_fua_prod
+##SBATCH --constraint=gpu
+#SBATCH --output=result-mpiopenmp-stencil-2.out
+## https://user.cscs.ch/access/running/#electrical-groups
+##SBATCH --switches=1
+#SBATCH --ntasks-per-core=1
+#SBATCH --ntasks-per-node=1
+## disable hyperthreading. On Piz Daint (XC50) Intel Xeon E5-2690 v3 has 12 cores, 2 threads per core
+#SBATCH --cpus-per-task=48
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+echo ">>> module list"
+module list
+
+echo ">>> srun log"
+srun --exclusive ../../mpiomp/MPIOPENMP/Stencil/stencil $OMP_NUM_THREADS 100 32768

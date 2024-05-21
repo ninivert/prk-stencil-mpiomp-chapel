@@ -1,0 +1,24 @@
+#!/bin/bash -l
+#SBATCH --job-name="chpl-stencil-opt-7"
+##SBATCH --account="None"
+#SBATCH --time=00:00:01
+#SBATCH --nodes=128
+#SBATCH --partition=skl_fua_prod
+##SBATCH --constraint=gpu
+#SBATCH --output=result-chpl-stencil-opt-7.out
+## https://user.cscs.ch/access/running/#electrical-groups
+##SBATCH --switches=1
+# we don't set --cpus-per-task or --ntasks variables, we let the Chapel launcher figure it out
+# (and the program prints out numLocales and maxTaskPar)
+
+echo ">>> printchplenv --all"
+$CHPL_HOME/util/printchplenv --all
+
+echo ">>> module list"
+module list
+
+echo ">>> compilation info"
+../../chapel/stencil-opt --about
+
+echo ">>> srun log"
+../../chapel/stencil-opt -v -nl 128 --iterations 100 --order 185363

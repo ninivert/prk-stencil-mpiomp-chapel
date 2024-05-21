@@ -1,0 +1,24 @@
+manpath: warning: $MANPATH set, appending /etc/man_db.conf
+>>> module list
+Currently Loaded Modulefiles:
+ 1) profile/base(default)           4) gnu/7.3.0                  
+ 2) cmake/3.23.3                    5) openmpi/3.0.0--gnu--7.3.0  
+ 3) spack/preprod_base_0.18.1_275   6) python/3.9.4               
+>>> srun log
+Parallel Research Kernels version 2.17
+MPI+OPENMP stencil execution on 2D grid
+Number of ranks        = 4
+Number of threads      = 48
+Grid size              = 32768
+Radius of stencil      = 2
+Tiles in x/y-direction = 2/2
+Type of stencil        = star
+Data type              = double precision
+Compact representation of stencil loop body
+Number of iterations   = 100
+Solution validates
+Rate (MFlops/s), including communication and increment time: 227876.337455 
+Total time [s] (max of all ranks):     total 8.950519, avg 0.089505
+Comm time [s] (max of all ranks):      total 2.176232, avg 0.021762
+Stencil time [s] (max of all ranks):   total 4.979918, avg 0.049799
+Increment time [s] (max of all ranks): total 3.574270, avg 0.035743
