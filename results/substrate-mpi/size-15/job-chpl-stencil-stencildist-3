@@ -1,0 +1,25 @@
+#!/bin/bash -l
+#SBATCH --job-name="chpl-stencil-stencildist-3"
+#SBATCH --account="spc"
+#SBATCH --time=00:00:01
+#SBATCH --nodes=8
+##SBATCH --partition=normal
+#SBATCH --cpus-per-task=72
+#SBATCH --qos=parallel
+#SBATCH --output=result-chpl-stencil-stencildist-3.out
+## request all the memory on the node
+#SBATCH --exclusive
+#SBATCH --mem=0
+## https://user.cscs.ch/access/running/#electrical-groups
+#SBATCH --switches=1
+echo ">>> printchplenv --all"
+$CHPL_HOME/util/printchplenv --all
+
+echo ">>> module list"
+module list
+
+echo ">>> compilation info"
+../chapel/stencil-stencildist --about
+
+echo ">>> srun log"
+../chapel/stencil-stencildist -nl 8 --iterations 100 --order 92681

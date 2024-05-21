@@ -1,0 +1,152 @@
+>>> printchplenv --all
+machine info: Linux jst351 5.14.0-70.30.1.el9_0.x86_64 #1 SMP PREEMPT Fri Oct 14 10:30:46 EDT 2022 x86_64
+CHPL_HOME: /home/vadot/chapel/chapel-2.0.1 *
+script location: /home/vadot/chapel/chapel-2.0.1/util/chplenv
+CHPL_HOST_PLATFORM: linux64
+CHPL_HOST_COMPILER: gnu
+  CHPL_HOST_CC: /ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4/bin/gcc
+  CHPL_HOST_CXX: /ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4/bin/g++
+CHPL_HOST_ARCH: x86_64
+CHPL_TARGET_PLATFORM: linux64
+CHPL_TARGET_COMPILER: llvm
+  CHPL_TARGET_CC: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang --gcc-toolchain=/ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4
+  CHPL_TARGET_CXX: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang++ --gcc-toolchain=/ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4
+  CHPL_TARGET_LD: mpicxx
+CHPL_TARGET_ARCH: x86_64
+CHPL_TARGET_CPU: native +
+CHPL_LOCALE_MODEL: flat
+CHPL_COMM: gasnet +
+  CHPL_COMM_SUBSTRATE: ucx +
+  CHPL_GASNET_SEGMENT: fast
+  CHPL_GASNET_VERSION: 1
+CHPL_TASKS: qthreads
+CHPL_LAUNCHER: slurm-srun +
+CHPL_TIMERS: generic
+CHPL_UNWIND: none
+CHPL_HOST_MEM: jemalloc
+CHPL_MEM: jemalloc +
+CHPL_ATOMICS: cstdlib
+  CHPL_NETWORK_ATOMICS: none
+CHPL_GMP: bundled
+CHPL_HWLOC: bundled
+CHPL_RE2: bundled
+CHPL_LLVM: bundled +
+  CHPL_LLVM_SUPPORT: bundled
+  CHPL_LLVM_CONFIG: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/llvm-config
+  CHPL_LLVM_VERSION: 17
+CHPL_AUX_FILESYS: none
+CHPL_LIB_PIC: none
+CHPL_SANITIZE: none
+CHPL_SANITIZE_EXE: none
+>>> module list
+No modules loaded
+>>> compilation info
+Compilation command: chpl --fast stencil-opt.chpl 
+Chapel compiler version: 2.0.1
+Chapel environment:
+  CHPL_HOME: /home/vadot/chapel/chapel-2.0.1
+  CHPL_ATOMICS: cstdlib
+  CHPL_AUX_FILESYS: none
+  CHPL_COMM: gasnet
+  CHPL_COMM_SUBSTRATE: ucx
+  CHPL_COMPILER_SUBDIR: linux64/gnu/x86_64/hostmem-jemalloc/llvm-bundled/17/san-none
+  CHPL_CUDA_LIBDEVICE_PATH: none
+  CHPL_CUDA_PATH: 
+  CHPL_GASNET_SEGMENT: fast
+  CHPL_GASNET_UNIQ_CFG_PATH: linux64-x86_64-native-llvm-none/substrate-ucx/seg-fast
+  CHPL_GASNET_VERSION: 1
+  CHPL_GMP: bundled
+  CHPL_GMP_IS_OVERRIDDEN: False
+  CHPL_GMP_UNIQ_CFG_PATH: linux64-x86_64-native-llvm-none
+  CHPL_GPU: none
+  CHPL_GPU_ARCH: none
+  CHPL_GPU_MEM_STRATEGY: array_on_device
+  CHPL_HOST_ARCH: x86_64
+  CHPL_HOST_BIN_SUBDIR: linux64-x86_64
+  CHPL_HOST_BUNDLED_COMPILE_ARGS: 
+  CHPL_HOST_BUNDLED_LINK_ARGS: 
+  CHPL_HOST_CC: /ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4/bin/gcc
+  CHPL_HOST_COMPILER: gnu
+  CHPL_HOST_CPU: none
+  CHPL_HOST_CXX: /ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4/bin/g++
+  CHPL_HOST_JEMALLOC: bundled
+  CHPL_HOST_JEMALLOC_UNIQ_CFG_PATH: host/linux64-x86_64-gnu
+  CHPL_HOST_MEM: jemalloc
+  CHPL_HOST_PLATFORM: linux64
+  CHPL_HOST_SYSTEM_COMPILE_ARGS: 
+  CHPL_HOST_SYSTEM_LINK_ARGS: 
+  CHPL_HWLOC: bundled
+  CHPL_HWLOC_UNIQ_CFG_PATH: linux64-x86_64-native-llvm-none-flat
+  CHPL_LAUNCHER: slurm-srun
+  CHPL_LAUNCHER_SUBDIR: linux64/gnu/x86_64/loc-flat/comm-gasnet/ucx/fast/1/tasks-qthreads/launch-slurm-srun/tmr-generic/unwind-none/mem-jemalloc/atomics-cstdlib/lib_pic-none/san-none
+  CHPL_LIBFABRIC: none
+  CHPL_LIBFABRIC_UNIQ_CFG_PATH: linux64-x86_64-native-llvm-none
+  CHPL_LIBUNWIND_UNIQ_CFG_PATH: linux64-x86_64-native-llvm-none
+  CHPL_LIB_PIC: none
+  CHPL_LLVM: bundled
+  CHPL_LLVM_CLANG_C: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang --gcc-toolchain=/ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4
+  CHPL_LLVM_CLANG_CXX: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang++ --gcc-toolchain=/ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4
+  CHPL_LLVM_CONFIG: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/llvm-config
+  CHPL_LLVM_STATIC_DYNAMIC: static
+  CHPL_LLVM_SUPPORT: bundled
+  CHPL_LLVM_TARGET_CPU: native
+  CHPL_LLVM_UNIQ_CFG_PATH: linux64-x86_64
+  CHPL_LLVM_VERSION: 17
+  CHPL_LOCALE_MODEL: flat
+  CHPL_MAKE: gmake
+  CHPL_MEM: jemalloc
+  CHPL_NETWORK_ATOMICS: none
+  CHPL_PE_CHPL_PKGCONFIG_LIBS: 
+  CHPL_QTHREAD_UNIQ_CFG_PATH: linux64-x86_64-native-llvm-none-flat-jemalloc-bundled
+  CHPL_RE2: bundled
+  CHPL_RE2_IS_OVERRIDDEN: False
+  CHPL_RE2_UNIQ_CFG_PATH: linux64-x86_64-native-llvm-none
+  CHPL_ROCM_PATH: 
+  CHPL_RUNTIME_CPU: native
+  CHPL_RUNTIME_INCL: /home/vadot/chapel/chapel-2.0.1/runtime/include
+  CHPL_RUNTIME_LIB: /home/vadot/chapel/chapel-2.0.1/lib
+  CHPL_RUNTIME_SUBDIR: linux64/llvm/x86_64/cpu-native/loc-flat/comm-gasnet/ucx/fast/1/tasks-qthreads/tmr-generic/unwind-none/mem-jemalloc/atomics-cstdlib/hwloc-bundled/re2-bundled/fs-none/lib_pic-none/san-none
+  CHPL_SANITIZE: none
+  CHPL_SANITIZE_EXE: none
+  CHPL_SYS_MODULES_SUBDIR: linux64-x86_64-llvm
+  CHPL_TARGET_ARCH: x86_64
+  CHPL_TARGET_BACKEND_CPU: native
+  CHPL_TARGET_BIN_SUBDIR: linux64-x86_64-native
+  CHPL_TARGET_BUNDLED_COMPILE_ARGS: -I/home/vadot/chapel/chapel-2.0.1/runtime/include/localeModels/flat -I/home/vadot/chapel/chapel-2.0.1/runtime/include/localeModels -I/home/vadot/chapel/chapel-2.0.1/runtime/include/comm/gasnet -I/home/vadot/chapel/chapel-2.0.1/runtime/include/comm -I/home/vadot/chapel/chapel-2.0.1/runtime/include/tasks/qthreads -I/home/vadot/chapel/chapel-2.0.1/runtime/include -I/home/vadot/chapel/chapel-2.0.1/runtime/include/qio -I/home/vadot/chapel/chapel-2.0.1/runtime/include/atomics/cstdlib -I/home/vadot/chapel/chapel-2.0.1/runtime/include/mem/jemalloc -I/home/vadot/chapel/chapel-2.0.1/third-party/utf8-decoder -DCHPL_JEMALLOC_PREFIX=chpl_je_ -I/home/vadot/chapel/chapel-2.0.1/third-party/gmp/install/linux64-x86_64-native-llvm-none/include -I/home/vadot/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-native-llvm-none-flat/include -I/home/vadot/chapel/chapel-2.0.1/third-party/qthread/install/linux64-x86_64-native-llvm-none-flat-jemalloc-bundled/include -I/home/vadot/chapel/chapel-2.0.1/third-party/jemalloc/install/target/linux64-x86_64-native-llvm-none/include -I/home/vadot/chapel/chapel-2.0.1/third-party/re2/install/linux64-x86_64-native-llvm-none/include -D_GNU_SOURCE=1 -DGASNET_PAR -D_REENTRANT -I/home/vadot/chapel/chapel-2.0.1/third-party/gasnet/install/linux64-x86_64-native-llvm-none/substrate-ucx/seg-fast/include -I/home/vadot/chapel/chapel-2.0.1/third-party/gasnet/install/linux64-x86_64-native-llvm-none/substrate-ucx/seg-fast/include/ucx-conduit -Wno-unused -Wunused-result -Wno-unused-parameter -Wno-address
+  CHPL_TARGET_BUNDLED_LINK_ARGS: -L/home/vadot/chapel/chapel-2.0.1/lib/linux64/llvm/x86_64/cpu-native/loc-flat/comm-gasnet/ucx/fast/1/tasks-qthreads/tmr-generic/unwind-none/mem-jemalloc/atomics-cstdlib/hwloc-bundled/re2-bundled/fs-none/lib_pic-none/san-none -lchpl -L/home/vadot/chapel/chapel-2.0.1/third-party/gmp/install/linux64-x86_64-native-llvm-none/lib -lgmp -Wl,-rpath,/home/vadot/chapel/chapel-2.0.1/third-party/gmp/install/linux64-x86_64-native-llvm-none/lib -L/home/vadot/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-native-llvm-none-flat/lib -lhwloc -Wl,-rpath,/home/vadot/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-native-llvm-none-flat/lib -L/home/vadot/chapel/chapel-2.0.1/third-party/qthread/install/linux64-x86_64-native-llvm-none-flat-jemalloc-bundled/lib -Wl,-rpath,/home/vadot/chapel/chapel-2.0.1/third-party/qthread/install/linux64-x86_64-native-llvm-none-flat-jemalloc-bundled/lib -lqthread -L/home/vadot/chapel/chapel-2.0.1/third-party/hwloc/install/linux64-x86_64-native-llvm-none-flat/lib -L/home/vadot/chapel/chapel-2.0.1/third-party/jemalloc/install/target/linux64-x86_64-native-llvm-none/lib -ljemalloc -L/home/vadot/chapel/chapel-2.0.1/third-party/re2/install/linux64-x86_64-native-llvm-none/lib -lre2 -Wl,-rpath,/home/vadot/chapel/chapel-2.0.1/third-party/re2/install/linux64-x86_64-native-llvm-none/lib -D_GNU_SOURCE=1 -L/home/vadot/chapel/chapel-2.0.1/third-party/gasnet/install/linux64-x86_64-native-llvm-none/substrate-ucx/seg-fast/lib -lgasnet-ucx-par -L/ssoft/spack/syrah/v3/opt/spack/linux-rhel9-icelake/gcc-11.3.0/ucx-1.12.1-mcggqmcvjobtoc4p26hednzka6pjghgm/lib -lucp -lucs -luct -lucm -lpmix
+  CHPL_TARGET_CC: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang --gcc-toolchain=/ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4
+  CHPL_TARGET_COMPILER: llvm
+  CHPL_TARGET_COMPILER_PRGENV: none
+  CHPL_TARGET_CPU: native
+  CHPL_TARGET_CPU_FLAG: arch
+  CHPL_TARGET_CXX: /home/vadot/chapel/chapel-2.0.1/third-party/llvm/install/linux64-x86_64/bin/clang++ --gcc-toolchain=/ssoft/spack/syrah/v3/opt/spack/linux-rhel9-x86_64_v2/gcc-11.2.1/gcc-11.3.0-xt3pxujartqg46r6lercdmcya5bcxth4
+  CHPL_TARGET_JEMALLOC: bundled
+  CHPL_TARGET_JEMALLOC_UNIQ_CFG_PATH: target/linux64-x86_64-native-llvm-none
+  CHPL_TARGET_LD: mpicxx
+  CHPL_TARGET_MEM: jemalloc
+  CHPL_TARGET_PLATFORM: linux64
+  CHPL_TARGET_SYSTEM_COMPILE_ARGS: 
+  CHPL_TARGET_SYSTEM_LINK_ARGS: -lpthread -lm
+  CHPL_TASKS: qthreads
+  CHPL_THIRD_PARTY: /home/vadot/chapel/chapel-2.0.1/third-party
+  CHPL_TIMERS: generic
+  CHPL_UNWIND: none
+>>> srun log
+*** WARNING: ucx-conduit is experimental and should not be used for performance measurements.
+    WARNING: Please see `ucx-conduit/README` for more details.
+Parallel Research Kernels Version 2.17
+Parallel stencil execution on 2D grid
+Number of ranks      = 4
+Number of threads    = 72
+Grid size            = 4096
+Radius of stencil    = 2
+Type of stencil      = star
+Data type            = real(64)
+Number of iterations = 100
+Distribution         = Stencil
+Solution validates
+Rate (MFlops/s): 27081.686132  Avg time (s): 0.0117476
+total time =     total 1.17476, avg 0.0117476
+stencil time =   total 0.478638, avg 0.00478638
+increment time = total 0.527727, avg 0.00527727
+comm time =      total 0.168382, avg 0.00168382

@@ -1,0 +1,24 @@
+#!/bin/bash -l
+#SBATCH --job-name="mpiopenmp-stencil-8"
+#SBATCH --account="spc"
+#SBATCH --time=00:00:01
+#SBATCH --nodes=256
+##SBATCH --partition=normal
+#SBATCH --cpus-per-task=72
+#SBATCH --qos=parallel
+#SBATCH --output=result-mpiopenmp-stencil-8.out
+## request all the memory on the node
+#SBATCH --exclusive
+#SBATCH --mem=0
+## https://user.cscs.ch/access/running/#electrical-groups
+#SBATCH --switches=1
+#SBATCH --ntasks-per-core=1
+#SBATCH --ntasks-per-node=1
+
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+echo ">>> module list"
+module list
+
+echo ">>> srun log"
+srun --exclusive ../mpiomp/MPIOPENMP/Stencil/stencil $OMP_NUM_THREADS 100 524288
