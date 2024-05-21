@@ -1,0 +1,20 @@
+>>> module list
+No modules loaded
+>>> srun log
+Parallel Research Kernels version 2.17
+MPI+OPENMP stencil execution on 2D grid
+Number of ranks        = 2
+Number of threads      = 72
+Grid size              = 11585
+Radius of stencil      = 2
+Tiles in x/y-direction = 1/2
+Type of stencil        = star
+Data type              = double precision
+Compact representation of stencil loop body
+Number of iterations   = 100
+Solution validates
+Rate (MFlops/s), including communication and increment time: 255147.989464 
+Total time [s] (max of all ranks):     total 0.998743, avg 0.009987
+Comm time [s] (max of all ranks):      total 0.062769, avg 0.000628
+Stencil time [s] (max of all ranks):   total 0.657032, avg 0.006570
+Increment time [s] (max of all ranks): total 0.324899, avg 0.003249
