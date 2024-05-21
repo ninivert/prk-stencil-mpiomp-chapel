@@ -21,6 +21,7 @@ config param R = 2,
 /* Number of iterations to execute (0th iteration is untimed) */
 config const iterations: int = 10,
              /* Input/Output matrix dimensions are 'order' x 'order' */
+             // you can also do  chpl --fast --set order=65536 stencil-opt.chpl 
              order: int = 1000,
              /* Enable debug output, including chplvis data */
              debug: bool = false,
